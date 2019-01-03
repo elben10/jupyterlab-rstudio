@@ -2,14 +2,12 @@ FROM elben10/numecon-mybinder
 
 # Make sure the contents of our repo are in ${HOME} 
 COPY . ${HOME}
-
-RUN conda install --quiet --yes \
-    r-base
     
 USER root
 
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends \
+	r-base \
 	libapparmor1 \
 	libedit2 \
 	lsb-release \
