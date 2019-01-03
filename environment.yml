@@ -1,4 +1,4 @@
 name: base
 dependencies:
   - pip:
-    - git+https://github.com/elben10/jupyter-server-proxy
+    - git+https://github.com/elben10/jupyter-rsession-proxy
