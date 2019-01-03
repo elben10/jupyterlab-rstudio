@@ -1,34 +1,11 @@
 FROM elben10/numecon-mybinder
 
-USER root
+# Make sure the contents of our repo are in ${HOME} 
+COPY . ${HOME}
 
-RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 && \
-    sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/'
+RUN conda install --quiet --yes \
+    r-base \
+    rstudio
 
-# R pre-requisites
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    fonts-dejavu \
-    tzdata \
-    gfortran \
-    gcc && \
-    r-base && \
-    rm -rf /var/lib/apt/lists/*
-    
-# You can use rsession from rstudio's desktop package as well.
-ENV RSTUDIO_PKG=rstudio-server-1.0.136-amd64.deb
-
-RUN wget -q http://download2.rstudio.org/${RSTUDIO_PKG}
-RUN dpkg -i ${RSTUDIO_PKG}
-RUN rm ${RSTUDIO_PKG}
-
-RUN apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-USER $NB_USER
-
-RUN pip install git+https://github.com/jupyterhub/jupyter-rsession-proxy
-
-# The desktop package uses /usr/lib/rstudio/bin
-ENV PATH="${PATH}:/usr/lib/rstudio-server/bin"
-ENV LD_LIBRARY_PATH="/usr/lib/R/lib:/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/server:/opt/conda/lib/R/lib"
+# Install conda deps
+RUN conda env update -f environment.yml
