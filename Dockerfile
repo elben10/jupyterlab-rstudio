@@ -38,4 +38,4 @@ ENV LD_LIBRARY_PATH="/usr/lib/R/lib:/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/
 # Install conda deps
 # RUN conda env update -f environment.yml
 
-jupyter labextension install jupyterlab-server-proxy
+RUN jupyter labextension install jupyterlab-server-proxy
