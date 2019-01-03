@@ -2,15 +2,19 @@ FROM jupyter/r-notebook
 
 USER root
 
+# R pre-requisites
 RUN apt-get update && \
-	apt-get install -y --no-install-recommends \
-		libapparmor1 \
-		libedit2 \
-		lsb-release \
-		psmisc \
-		libssl1.0.0 \
-		;
-
+    apt-get install -y --no-install-recommends \
+    fonts-dejavu \
+    tzdata \
+    gfortran \
+    gcc && \
+    rm -rf /var/lib/apt/lists/*
+    
+RUN conda install --quiet --yes \
+    'r-base=3.5.1' && \
+    echo which R
+    
 # You can use rsession from rstudio's desktop package as well.
 ENV RSTUDIO_PKG=rstudio-server-1.0.136-amd64.deb
 
