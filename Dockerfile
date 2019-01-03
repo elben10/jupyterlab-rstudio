@@ -1,4 +1,4 @@
-FROM jupyter/r-notebook
+FROM elben10/numecon-mybinder
 
 USER root
 
