@@ -15,14 +15,11 @@ RUN apt-get update && \
 	r-base && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
-	
 
-# You can use rsession from rstudio's desktop package as well.
-ENV RSTUDIO_PKG=rstudio-server-$(wget -qO- https://download2.rstudio.org/current.ver)-amd64.deb
-
-RUN wget -q http://download2.rstudio.org/${RSTUDIO_PKG}
-RUN dpkg -i ${RSTUDIO_PKG}
-RUN rm ${RSTUDIO_PKG}
+RUN export RSTUDIO_PKG=rstudio-server-$(wget -qO- https://download2.rstudio.org/current.ver)-amd64.deb && \
+    wget -q http://download2.rstudio.org/${RSTUDIO_PKG} && \
+    dpkg -i ${RSTUDIO_PKG} && \
+    rm ${RSTUDIO_PKG}
 
 USER $NB_USER
 
