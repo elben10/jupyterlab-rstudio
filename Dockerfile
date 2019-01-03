@@ -17,7 +17,7 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 
 RUN export RSTUDIO_PKG=rstudio-server-$(wget -qO- https://download2.rstudio.org/current.ver)-amd64.deb && \
-    wget -q http://download2.rstudio.org/${RSTUDIO_PKG} && \
+    wget http://download2.rstudio.org/${RSTUDIO_PKG} && \
     dpkg -i ${RSTUDIO_PKG} && \
     rm ${RSTUDIO_PKG}
 
