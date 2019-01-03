@@ -9,11 +9,8 @@ RUN apt-get update && \
     tzdata \
     gfortran \
     gcc && \
+    r-base && \
     rm -rf /var/lib/apt/lists/*
-    
-RUN conda install --quiet --yes \
-    'r-base=3.5.1' && \
-    echo which R
     
 # You can use rsession from rstudio's desktop package as well.
 ENV RSTUDIO_PKG=rstudio-server-1.0.136-amd64.deb
