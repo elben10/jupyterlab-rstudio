@@ -12,7 +12,7 @@ RUN apt-get update && \
 	libssl1.0.0 \
 	lsb-release \
 	psmisc \
-	r-base \
+	r-base && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
 	
