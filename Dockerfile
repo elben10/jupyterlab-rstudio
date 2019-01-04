@@ -1,4 +1,4 @@
-FROM elben10/numecon-mybinder
+FROM elben10/numecon-mybinder:latest
 
 # Make sure the contents of our repo are in ${HOME}  
 COPY . ${HOME}
